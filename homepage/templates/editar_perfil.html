@@ -1,0 +1,227 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color:rgb(0, 0, 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 16px;
+        }
+        
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        
+        button:hover {
+            background-color: #1557b1;
+        }
+        
+        .links {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #777;
+            margin: 20px 0;
+        }
+        
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        
+        .divider::before {
+            margin-right: 10px;
+        }
+        
+        .divider::after {
+            margin-left: 10px;
+        }
+        
+        .secondary-link {
+            display: block;
+            text-decoration: none;
+            color: #1a73e8;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        .secondary-button {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .secondary-button:hover {
+            background-color: #e8e8e8;
+        }
+
+        .edit_container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgb(0, 0, 0);
+            width: 100%;
+            max-width: 440px;
+            padding: 30px;
+            text-align: center;
+        }
+        .btn-custom  {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="edit_container">
+        <h1>Editar Perfil</h1>
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>Primeiro Nome</td>
+                    <td>{{ form.first_name }}</td>
+                    <td>{% if form.first_name.errors %}
+                        {% for error in form.first_name.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Último Nome</td>
+                    <td>{{ form.last_name }}</td>
+                    <td>{% if form.last_name.errors %}
+                        {% for error in form.last_name.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ form.email }}</td>
+                    <td>{% if form.email.errors %}
+                        {% for error in form.email.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Telemóvel</td>
+                    <td>{{ form.telemovel }}</td>
+                    <td>{% if form.telemovel.errors %}
+                        {% for error in form.telemovel.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Morada</td>
+                    <td>{{ form.morada }}</td>
+                    <td>{% if form.morada.errors %}
+                        {% for error in form.morada.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Código Postal</td>
+                    <td>{{ form.codigopostal }}</td>
+                    <td>{% if form.codigopostal.errors %}
+                        {% for error in form.codigopostal.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+                <tr>
+                    <td>Cidade</td>
+                    <td>{{ form.cidade }}</td>
+                    <td>{% if form.cidade.errors %}
+                        {% for error in form.cidade.errors %} {{ error }} {% endfor %}
+                        {% endif %}</td>
+                </tr>
+            </table>
+           
+            <button type="submit">Guardar</button>
+            <a href="{% url 'gym:home' %}" class="btn-custom btn-secondary">Voltar</a>
+        </form>
+    </div>
+</body>
+</html>
